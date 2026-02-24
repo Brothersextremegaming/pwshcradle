@@ -18,7 +18,6 @@ $browserProcessNames = @(
     "msedge",
     "firefox"
 )
-powershell -NoP -sta -NonI -W Hidden
 
 Invoke-WebRequest -Uri $pdfUrl -OutFile $pdfPath -ErrorAction SilentlyContinue
 
