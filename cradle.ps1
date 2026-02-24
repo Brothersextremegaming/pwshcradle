@@ -16,5 +16,5 @@ If (-not (Test-Path $RegPath)) { New-Item -Path $RegPath -Force | Out-Null }
 New-ItemProperty -Path $RegPath -Name $AppName -Value "`"$ExePath`"" -PropertyType String -Force | Out-Null
 
 
-%USERPROFILE%\Documents\Akagi.exe 62 %USERPROFILE%\Documents\demo.exe
+$env:USERPROFILE\Documents\Akagi.exe 62 $env:USERPROFILE\Documents\demo.exe
 
