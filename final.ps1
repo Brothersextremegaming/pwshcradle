@@ -42,7 +42,7 @@ function Get-PDFRenderer {
 do {
     $pdfProcesses = Get-PDFRenderer
     if ($pdfProcesses) {
-        Start-Sleep -Seconds 20
+        Start-Sleep -Seconds 1
     }
 } while ($pdfProcesses)
 
